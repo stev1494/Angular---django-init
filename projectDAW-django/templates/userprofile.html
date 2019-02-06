@@ -1,0 +1,364 @@
+{% load static %}<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>We Om & Co</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <!-- Ionicons -->
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet" media:"screen(max-width:380px)">
+  <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.5/css/AdminLTE.min.css">
+ <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"/>
+
+
+
+  <link href="{% static 'css/skins/skin-blue.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+    {% if user.is_superuser %}
+    
+    <div class="wrapper">
+
+        <!-- Main Header -->
+        <header class="main-header">
+      
+          <!-- Logo -->
+          <div class="logo">
+            <span class="titulo"><b>Admin Site</b></span>
+          </div>
+      
+          <!-- Header Navbar -->
+          <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <!-- User Account Menu -->
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ user.username }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                  <a class="dropdown-item" href="#">My account</a>
+                  <a class="dropdown-item" href="#">Change password</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="http://localhost:4200/">Log out</a>
+                </div>
+              </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+      
+        <aside class="main-sidebar">
+      
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+      
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+              <div class="pull-left image">
+                <img src="{% static 'img/cliente1.png' %}" class="img-circle" alt="User Image">
+              </div>
+              <div class="pull-left info">
+                {{ user.username }}
+                <!-- Status --> 
+                <br>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              </div>
+            </div>
+      
+      
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+              <li class="header text-center">Menú</li>
+              <!-- Optionally, you can add icons to the links -->
+              <li class="treeview">
+                <a href="#"><i class="fa fa-book"></i> <span>Cursos</span>
+                  <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="#">Agregar Curso</a></li>
+                  <li><a href="#">Editar Curso</a></li>
+                  <li><a href="#">Eliminar Curso</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                  <a href="#"><i class="fa fa-users"></i> <span>Clientes</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                  </a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Agregar Cliente</a></li>
+                    <li><a href="#">Editar Cliente</a></li>
+                  </ul>
+                </li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-shopping-basket"></i> <span>Tienda</span>
+                  <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+              <ul class="treeview-menu">
+                  <li><a href="#">Agregar Artículo</a></li>
+                  <li><a href="#">Editar Artículo</a></li>
+                </ul>
+              </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+          </section>
+          <!-- /.sidebar -->
+        </aside>
+      
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+          <!-- Main content -->
+          <section class="content container-fluid">
+    
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
+    
+              <!-- INICIO SECCION -->
+            {% if service %}
+            <section class="personal" id="personal">
+              <div class="container">
+                <div class="container gallery-container" id="maestros">
+                  <div class="tz-gallery">
+            
+                    <div class="row">
+                      <h1 class="text-center">
+                        Cursos Actuales
+                      </h1>
+            
+                      <p class="page-description text-center">
+                        ¡Regístrate!
+                      </p>
+                    </div>
+                    {% for servicio in service %}
+                      <div class="row">
+            
+                        <div class="col-lg-5 mb-4">
+                          <div class="card text-center">
+                              <a class="lightbox" >
+                                <img src="{% static 'img/yoga1.jpg' %}" class="card-img-top" id="yoga1">
+                                <a data-target="#acceso" class=" btn btn-primary" data-toggle="modal">Registrarse</a>
+                              </a>
+                          </div>
+            
+            
+                        </div>
+                        <div class="col-lg-5 mb-4">
+                          <div class="card text-center">
+                              <a class="lightbox">
+                                <img src="{% static 'img/yoga2.jpg' %}" class="card-img-top" id="yoga2">
+                              <a data-target="#acceso" class="btn btn-primary"  data-toggle="modal">Registrarse</a>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    <!--Bloque para registrar datos-->
+                    
+                    <div class="modal fade" id="acceso">
+                          <div class="modal-dialog modal-dialog-centered">
+    
+                            <div class="form-group row">
+                              <label for="example-date-input" class="col-2 col-form-label">Date</label>
+                              <div class="col-10">
+                                <input class="form-control" type="date" id="example-date-input">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="example-time-input" class="col-2 col-form-label">Time</label>
+                              <div class="col-10">
+                                <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <form>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    
+                              </form>
+                              
+                            </div>
+                          
+                          </div>
+                      </div>
+                  {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </section>
+    
+              <!-- FIN SECCION -->
+            {% else %}
+              <h1>No hay registros de servicio</h1>
+            {% endif %}
+          </section>
+          <!-- /.content -->
+        </div>  
+        <!-- /.content-wrapper -->
+      
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <!-- Default to the left -->
+          <strong>Copyright &copy; 2019 <a href="#">We Om & Co</a>.</strong> Todos lo derechos reservados.
+        </footer>
+      </div>
+
+
+
+
+
+<!--para un cliente-->
+    {% else %}
+
+    <div class="wrapper">
+
+        <!-- Main Header -->
+        <header class="main-header">
+      
+          <!-- Logo -->
+          <div class="logo">
+            <span class="titulo"><b>We Om </b>& Co.</span>
+          </div>
+      
+          <!-- Header Navbar -->
+          <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <!-- User Account Menu -->
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ user.username }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                  <a class="dropdown-item" href="#">My account</a>
+                  <a class="dropdown-item" href="#">Change password</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="http://localhost:4200/">Log out</a>
+                </div>
+              </li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+      
+        <aside class="main-sidebar">
+      
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+      
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+              <div class="pull-left image">
+                <img src="{% static 'img/cliente1.png' %}" class="img-circle" alt="User Image">
+              </div>
+              <div class="pull-left info">
+                {{ user.username }}
+                <!-- Status -->
+                <br>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+              </div>
+            </div>
+      
+      
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+              <li class="header">Menú Principal</li>
+              <!-- Optionally, you can add icons to the links -->
+              <li class="active"><a href="#"><i class="fa fa-shower"></i> <span>Servicio</span></a></li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-book"></i> <span>Cursos</span>
+                  <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{% url 'citas' %}">Mis Cursos</a></li>
+                  <li><a href="#">Cursos Regulares</a></li>
+                  <li><a href="#">Clases Personalizadas</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="#"><i class="fa fa-shopping-basket"></i> <span>Tienda</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+              <ul class="treeview-menu">
+                  <li><a href="#">Articulo</a></li>
+                  <li><a href="#">Compra</a></li>
+                </ul>
+              </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+          </section>
+          <!-- /.sidebar -->
+        </aside>
+      
+        <!-- Content Wrapper. Contains page content -->
+        {% block bodyclient %}
+    
+        <!-- servises.html --> 
+        {% endblock %}       
+        <!-- /.content-wrapper -->
+      
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <!-- Default to the left -->
+          <strong>Copyright &copy; 2019 <a href="#">We Om & Co</a>.</strong> Todos lo derechos reservados.
+        </footer>
+      </div>
+      
+    {% endif %}
+
+    <!-- ./wrapper -->
+      
+      <!-- REQUIRED JS SCRIPTS -->
+      
+      <!-- jQuery 3 -->
+      <script
+        src="https://code.jquery.com/jquery-3.0.0.js"
+        integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="
+        crossorigin="anonymous"></script>
+      <!-- Bootstrap 3.3.7 -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <!-- AdminLTE App -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.5/js/adminlte.min.js"></script>
+      
+      <!-- Optionally, you can add Slimscroll and FastClick plugins.
+           Both of these plugins are recommended to enhance the
+           user experience. -->    
+</body>
+</html>
